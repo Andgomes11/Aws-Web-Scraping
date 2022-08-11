@@ -1,0 +1,19 @@
+service: Web-Scraping
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-2
+  layers:
+    - arn:aws:lambda:us-east-2:764866452798:layer:chrome-aws-lambda:31
+  memorySize: 2048 # recommended
+  timeout: 30
+
+functions:
+  hello:
+    handler: handler.WebScraping
+    events:
+      - httpApi:
+          path: /
+          method: post
